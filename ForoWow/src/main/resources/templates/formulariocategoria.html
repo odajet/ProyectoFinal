@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/formulariocategoria.css" th:href="@{/css/formulariocategoria.css}">
+  <title>Foro WoW - Crear categoría</title>
+</head>
+
+<body>
+
+<main>
+  <section id="contacto" class="border-bottom border-secondary border-2">
+
+
+    <div class="container  border-top" style="max-width: 1000px" id="contenedor">
+      <div class="text-center mb-4" id="titulo">
+        <div>
+          <h2>Formulario de administrador para crear categorías</h2>
+        </div>
+      </div>
+
+      <form method="POST" th:action="@{/crear-categoria}" name="formularioCategoria">
+      
+        <div class="mb-3">
+          <label for="nombre">Título de la categoría:</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" rows="1"
+            placeholder="Título de la categoria" required="required"></input>
+            <p class="text-danger aviso">El título tiene que tener como mínimo tres caracteres</p>
+        </div>
+
+        <div class="mb-3">
+          <label for="descripcion">Descripción de la categoría:</label>
+          <textarea class="form-control" name="descripcion" id="descripcion" rows="4"
+            placeholder="¿De qué trata la categoría?" required="required"></textarea>
+        </div>
+    
+        <div class="mb-3 d-flex justify-content-center">
+          <button type="button" class="btn bg-danger w-50 fs-5 text-white" id="botonEnviar">Crear categoría</button>
+          <a th:href="@{index}" class="w-50">
+          <button type="button" class="btn bg-primary w-100 fs-5 text-white">Volver a inicio</button>
+          </a>
+        </div>
+      </form>
+
+    </div>
+  </section>
+</main>
+   <!--FOOTER-->
+    <footer th:replace="~{fragmentos/footer::footer}"> 
+  </footer>
+  	
+	<script th:src="@{/js/formulariocategoria.js}">
+	
+	</script>
+</body>
+
+</html>

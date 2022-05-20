@@ -1,0 +1,18 @@
+body {
+    font-family: 'Roboto Slab', serif;
+    background-image: linear-gradient(rgb(36, 27, 20), rgb(35, 26, 19), rgb(34, 25, 18));
+    overflow-x: hidden;
+}
+
+.titulo-perfil-button{
+    pointer-events: none;
+}
+
+
+/*===================AUTOR==========================*/
+.card{
+    background-image: linear-gradient(rgb(43,35,28), rgb(44,36,29), rgb(45,37,30));
+}
+  
+
+

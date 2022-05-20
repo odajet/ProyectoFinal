@@ -1,0 +1,59 @@
+body {
+    font-family: 'Roboto Slab', serif;
+    background-image: linear-gradient(rgb(36, 27, 20), rgb(35, 26, 19), rgb(34, 25, 18));
+    overflow-x: hidden;
+}
+
+/*===================SLIDER DE IMAGENES==========================*/
+
+.carousel-inner {
+    max-height: 25rem !important;
+}
+
+.carousel-item:before {
+    -webkit-box-shadow: inset 0 0 20rem rgba(0, 0, 0, 1);
+    box-shadow: inset 0 0 20rem rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+}
+
+
+/*===================CARDS==========================*/
+.card{
+    background-image: linear-gradient(rgb(43,35,28), rgb(44,36,29), rgb(45,37,30));
+}
+
+.card-body:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+/*FOOTER*/
+
+
+#icono  i {
+    font-size: 26px;
+    padding: 0 8px;
+    color:#f3f3f3;
+}
+
+/*=========================MEDIA QUERIES PANTALLA EXTRA-SM================================*/
+
+@media (max-width: 576px) {
+    #servicios-fila-2 {
+        width: 100% !important;
+    }
+
+    #servicios-fila-1 {
+        width: 100% !important;
+    }
+
+    .icono-wrap {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        text-align: center;
+    }
+}

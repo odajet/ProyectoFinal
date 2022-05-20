@@ -1,0 +1,86 @@
+body {
+    font-family: 'Roboto Slab', serif;
+    background-image: linear-gradient(rgb(36, 27, 20), rgb(35, 26, 19), rgb(34, 25, 18));
+    overflow-x: hidden;
+}
+
+.titulo-hilo-button{
+    pointer-events: none;
+}
+
+.modal{
+  color: black!important;
+}
+
+/*===================AUTOR==========================*/
+.card{
+    background-image: linear-gradient(rgb(43,35,28), rgb(44,36,29), rgb(45,37,30));
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+}
+
+.avatar-container{
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+  }
+  .avatar{
+    margin: 0 auto;
+    width: 8rem;
+    height: 8rem;
+    background-position: right;
+    background-size: cover;
+    border-radius: 50rem;
+    background-repeat: no-repeat;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  .rey:before{
+    content: '';
+    background-image: url('../img/dey.png');
+    display: block;
+    position: absolute;
+    width: 18rem;
+    height: 19rem;
+    left: -2.8rem;
+    top: -5rem;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .principe:before{
+    content: '';
+    background-image: url('../img/principe.png');
+    display: block;
+    position: absolute;
+    width: 15rem;
+    height: 18rem;
+    left: -1.5rem;
+    top: -5rem;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+
+
+  @media (max-width: 1300px) {
+    .avatar-container{
+        width: 3rem;
+        height: 3rem;
+        display: none;
+    }
+
+    .card-body{
+        display: none;
+    }
+   }
+
+

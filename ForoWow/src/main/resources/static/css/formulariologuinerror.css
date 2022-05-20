@@ -1,0 +1,46 @@
+/*FORMULARIO*/
+
+body {
+    font-family: 'Roboto Slab', serif;
+    background-image: linear-gradient(rgb(36, 27, 20), rgb(35, 26, 19), rgb(34, 25, 18));
+    overflow-x: hidden;
+    color: white;
+}
+
+
+#contacto{
+    background-image:url(../img/fondo.jpg);
+    background-repeat: no-repeat;
+    min-height:955px;
+    background-size:cover;
+    background-position: 70% center;
+}
+
+
+#contenedor{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-image: linear-gradient(rgb(43,35,28), rgb(44,36,29), rgb(45,37,30));
+    border-radius:5px;
+}
+
+#titulo{
+    color: white;
+}
+
+/*AJUSTES*/
+
+@media (max-width: 576px) {
+    #ajuste-foto {
+        width:100% !important;
+    }
+
+    .icono-wrap{
+        flex-wrap:wrap !important;
+        justify-content: center !important;
+        text-align: center;
+    }
+}
+
