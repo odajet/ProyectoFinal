@@ -7,7 +7,15 @@ body {
     color: white;
 }
 
-.aviso{
+.aviso1{
+	display: none;
+}
+
+.aviso2{
+	display: none;
+}
+
+.aviso3{
 	display: none;
 }
 

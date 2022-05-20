@@ -1,14 +1,13 @@
 package com.salesianostriana.dam.forowow.controller;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import com.salesianostriana.dam.forowow.model.Categoria;
 import com.salesianostriana.dam.forowow.model.Hilo;
-import com.salesianostriana.dam.forowow.model.Mensaje;
 import com.salesianostriana.dam.forowow.security.Usuario;
-import com.salesianostriana.dam.forowow.security.UsuarioRepo;
+
 import com.salesianostriana.dam.forowow.services.CategoriaService;
-import com.salesianostriana.dam.forowow.services.HiloService;
+
 import com.salesianostriana.dam.forowow.services.UsuarioService;
 
 import lombok.AllArgsConstructor;
@@ -42,18 +41,12 @@ public class CategoriaController {
 	private CategoriaService categoriaService;
 	
 	@Autowired
-	private HiloService hiloService;
-	
-	@Autowired
 	private UsuarioService usuarioService;
 	
 	public CategoriaController(CategoriaService categoriaService) {
 		super();
 		this.categoriaService = categoriaService;
 	}
-	
-	@Autowired
-	private UsuarioRepo usuarioRepo;
 
 	@GetMapping({ "/index", "/" })
 	public String mostrarPortada(Model model) {
@@ -69,8 +62,12 @@ public class CategoriaController {
 	}
 	
 	@GetMapping("/categoria/{id}")
-	public String listarHilos(@PathVariable String id, Model model) {
+	public String listarHilos(@PathVariable String id, Model model, HttpServletRequest request) {
+		Usuario usuarioAutenticado = this.usuarioService.obtenerUsuarioLogeado().get();
 		Categoria categoria = this.categoriaService.findById(Long.parseLong(id)).get();
+		if(categoria.getId()==1 && usuarioAutenticado.getRango().toString().equalsIgnoreCase(Usuario.Rango.vasallo.toString())) {
+			return "redirect:/index";
+		}
 		List<Hilo>listaHilos = categoria.getHilos();
 		List<Hilo>listaHilosNoDuplicados = listaHilos.stream()
 		.distinct()
@@ -137,5 +134,5 @@ public class CategoriaController {
 		
 		return "redirect:/index";
 	}
-
+	
 }

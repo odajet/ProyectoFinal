@@ -1,13 +1,13 @@
 package com.salesianostriana.dam.forowow.controller;
 
 import java.sql.Timestamp;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,9 +61,22 @@ public class MensajeController {
 			@RequestParam(value="idMensaje") String idMensaje, 
 			@RequestParam(value="idHilo") String idHilo, 
 			Model model) {
+		Hilo hilo = this.hiloService.findById(Long.parseLong(idHilo)).get();
 		Mensaje mensaje = this.mensajeService.findById(Long.parseLong(idMensaje)).get();
+		List<Mensaje>listaMensajes = hilo.getMensajes();
+		Iterator<Mensaje> itr = listaMensajes.iterator();
+		 
+	    while (itr.hasNext())
+	    {
+	        Mensaje t = itr.next();
+	        if (t.getId()==Long.parseLong(idMensaje)) {
+	            itr.remove();
+	        }
+	    }
+	    hilo.setMensajes(listaMensajes);
+	    this.hiloService.save(hilo);
 		this.mensajeService.delete(mensaje);
-		
+		//return mensaje.toString();
 		return "redirect:/hilo/"+idHilo;
 	}
 	

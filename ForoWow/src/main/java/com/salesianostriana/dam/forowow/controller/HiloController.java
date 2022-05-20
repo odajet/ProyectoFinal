@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -110,6 +111,10 @@ public class HiloController {
 	@GetMapping("/hilo/{id}")
 	public String mostrarHilo(@PathVariable String id, Model model) {
 		Hilo hilo = this.hiloService.findById(Long.parseLong(id)).get();
+		Usuario usuarioLogeado=this.usuarioService.obtenerUsuarioLogeado().get();
+		if(hilo.getCategoria().getId()==1 && usuarioLogeado.getRango().toString().equalsIgnoreCase(Usuario.Rango.vasallo.toString())){
+			return "redirect:/index";
+		}
 		List<Mensaje>listaMensajes = hilo.getMensajes();
 		List<MensajeUsuario>listaMensajeUsuario = new ArrayList<>();
 		for (Mensaje mensaje : listaMensajes) {
@@ -164,6 +169,13 @@ public class HiloController {
 		hiloAntiguo.setFechaCreacion(Timestamp.valueOf(fechaCreacion));
 		hiloAntiguo.setTipoHilo(tipoMensaje);
 		hiloAntiguo.setContenido(contenido);
+		List<Mensaje>listaMensajes = hiloAntiguo.getMensajes();
+		Mensaje mensaje = hiloAntiguo.getMensajes().get(0);
+		mensaje.setContenido(contenido);
+		mensaje.setTipoMensaje(tipoMensaje);
+		this.mensajeService.save(mensaje);
+		listaMensajes.set(0, mensaje);
+		hiloAntiguo.setMensajes(listaMensajes);
 		this.hiloService.edit(hiloAntiguo);
 		
 		return "redirect:/categoria/"+idCategoria;

@@ -36,13 +36,14 @@
             <label for="titulo">Título:</label>
             <input type="text" class="form-control" name="titulo" id="hil" rows="1" placeholder="Título del hilo"
               required="required"></input>
-            <p class="text-danger aviso">El título tiene que tener como mínimo tres caracteres</p>
+            <p class="text-danger aviso1">El título tiene que tener como mínimo tres caracteres</p>
           </div>
 
           <div class="mb-3">
             <label for="nombre">Mensaje:</label>
-            <textarea class="form-control" name="mensaje" id="mensaje" rows="4"
+            <textarea class="form-control" name="mensaje" id="men" rows="4"
               placeholder="¿Más trabajo? Contenido del mensaje" required="required"></textarea>
+              <p class="text-danger aviso2">El mensaje tiene que tener como mínimo tres caracteres</p>
           </div>
 
           <div class="mb-3">
@@ -57,6 +58,7 @@
           <div class="mb-3">
             <label for="fechaCreacion">¿Cuándo deseas lanzar el hilo?</label>
             <input class="inp" type="date" name="fechaCreacion" id="fechaCreacion" required="required"><br>
+            <p class="text-danger aviso3">La fecha no puede estar vacía</p>
           </div>
 
           <div class="mb-3 d-flex justify-content-center">

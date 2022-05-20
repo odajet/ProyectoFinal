@@ -28,9 +28,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+        .anonymous().and()
         .csrf().disable()
         .authorizeRequests()
-        //.antMatchers("/**").permitAll()
+      
         .antMatchers("/hilos/**", "/usuarios/**", "/categoria/**", "/formulario-hilo/**", "/hilo/**", 
         		"/perfil/**", "/responder-hilo-formulario/**", "/formulario-categoria/**", 
         		"/crear-categoria/**", "/eliminar-categoria/**", "/editar-categoria-formulario/**", 
@@ -43,7 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		"/hilos-ordenar-fecha/**", "/eliminar-hilo/**", "/editar-hilo-formulario/**",
         		"/actualizar-hilo/**", "/eliminar-mensaje/**", "/editar-mensaje-formulario/**", 
         		"/actualizar-mensaje/**", "/usuarios-ordenar-puntos/**").hasRole("ADMIN")
-        .anyRequest().permitAll()
+        .antMatchers("/**", "/login/**", "/index", "/autenticar-usuario/**", "login-error/**").permitAll()
+       
+        .anyRequest().authenticated()
         .and().exceptionHandling().accessDeniedPage("/index")
         .and().formLogin().defaultSuccessUrl("/")
         .and().formLogin().loginPage("/login").loginProcessingUrl("/autenticar-usuario").failureUrl("/login-error").permitAll()
