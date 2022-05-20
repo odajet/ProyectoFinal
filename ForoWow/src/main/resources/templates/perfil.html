@@ -21,74 +21,70 @@
 
 <body class="text-light d-flex flex-column min-vh-100">
 
-<header>
-	<nav th:replace="~{fragmentos/navbar::navbar}">
-	</nav>
-</header>
+	<header>
+		<nav th:replace="~{fragmentos/navbar::navbar}">
+		</nav>
+	</header>
 
-<main>
-<section>
-	<div class="row d-flex justify-content-end">
-		<div class="col-12 d-flex justify-content-center">
-			<button class="btn btn-outline-warning titulo-perfil-button m-5" type="submit">
-				Perfil de Usuario
-			</button>
-		</div>
-	</div>
-
-
-	<div class="row d-flex justify-content-center">
-
-		<div class="contenedor-mensaje col-12 d-inline-flex p-5 d-flex justify-content-center">
-
-
-
-			<div class="col-12 col-md-2 d-flex justify-content-center my-5">
-				<div class="card" style="width: 10rem; height: 12rem;">
-					<div th:classappend="${usuario.rango}" class="avatar-container">
-						<div class="avatar"
-							th:style="'background-image: url('+${usuario.avatar}+')'">
-						</div>
-					</div>
-					<div class="card-body d-flex justify-content-center">
-						<p th:text="${usuario.username}" class="card-text mt-3">Manolo Tejado</p>
-					</div>
+	<main>
+		<section>
+			<div class="row d-flex justify-content-end">
+				<div class="col-12 d-flex justify-content-center">
+					<button class="btn btn-outline-warning titulo-perfil-button m-5" type="submit">
+						Perfil de Usuario
+					</button>
 				</div>
-				
 			</div>
-			<!--<div class="card" style="width: 10rem; height: 12rem;">
+
+
+			<div class="row d-flex justify-content-center">
+
+				<div class="contenedor-mensaje col-12 d-inline-flex p-5 d-flex justify-content-center">
+
+
+
+					<div class="col-12 col-md-2 d-flex justify-content-center my-5">
+						<div class="card" style="width: 10rem; height: 12rem;">
+							<div th:classappend="${usuario.rango}" class="avatar-container">
+								<div class="avatar" th:style="'background-image: url('+${usuario.avatar}+')'">
+								</div>
+							</div>
+							<div class="card-body d-flex justify-content-center">
+								<p th:text="${usuario.username}" class="card-text mt-3">Manolo Tejado</p>
+							</div>
+						</div>
+
+					</div>
+					<!--<div class="card" style="width: 10rem; height: 12rem;">
 				<div class="card-body d-flex justify-content-center">
 					<p class="card-text" th:text="${usuario.username}">Manolo Tejado</p>
 				</div>
 			</div>-->
 
+					<div class="col-3 p-3 mt-5">
+						<p>
+							Rango: <span th:text="${usuario.rango}"></span>
+						</p>
 
+						<p>
+							Puntos: <span th:text="${usuario.puntos}"></span>
+						</p>
 
-			<div class="col-3 p-3 mt-5">
-				<p>
-					Rango: <span th:text="${usuario.rango}"></span>
-				</p>
+						<p>
+							Role: <span th:text="${usuario.role}"></span>
+						</p>
+					</div>
 
-				<p>
-					Puntos: <span th:text="${usuario.puntos}"></span>
-				</p>
+				</div>
 
-				<p>
-					Role: <span th:text="${usuario.role}"></span>
-				</p>
 			</div>
 
-		</div>
-
-	</div>
-
-</section>
-</main>
+		</section>
+	</main>
 	<!--FOOTER-->
 	<footer th:replace="~{fragmentos/footer::footer}">
 	</footer>
 
-	<!-- <script src="js/navbarfixed.js"></script>-->
 	<script src="js/perfil.js"></script>
 </body>
 

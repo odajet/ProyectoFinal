@@ -5,6 +5,10 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Esta es la pagina de inicio del foro del videojuego World
+	of Warcraft. En la cual encontramos las categorias del foro por las que podemos participar y la
+	barra de inicio">
+	<meta name="author" content="Manuel Tejado Morilla">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -25,106 +29,105 @@
 		</nav>
 	</header>
 	<main>
-	<section class="row">
-		<div class="container-fluid">
-			<div id="demo" class="carousel slide col-12" data-bs-ride="carousel">
+		<section class="row">
+			<div class="container-fluid">
+				<div id="demo" class="carousel slide col-12" data-bs-ride="carousel">
 
-				<!-- Indicators/dots -->
-				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-					<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-					<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-				</div>
-
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="img/slideruno.jpg" alt="Foto Slider Uno WoW" class="d-block" style="width:100%">
+					<!-- Indicators/dots -->
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+						<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+						<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
 					</div>
-					<div class="carousel-item">
-						<img src="img/sliderdos.png" alt="Foto Slider Dos WoW" class="d-block" style="width:100%">
-					</div>
-					<div class="carousel-item">
-						<img src="img/slidertres.jpg" alt="Foto Slider Tres WoW" class="d-block" style="width:100%">
-					</div>
-				</div>
 
-				<!-- Left and right controls/icons -->
-				<button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon"></span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-					<span class="carousel-control-next-icon"></span>
-				</button>
-			</div>
-
-
-			<p class="text-center p-3 display-4">
-				Todas las categorías
-			</p>
-
-			<div class="cards-container">
-				<div class="row justify-content-center mx-auto w-75">
-
-					<!--AQUÍ VAN LAS CATEGORÍAS-->
-
-					<div th:each="categoria : ${listaCategorias}" class="card shadow-sm col-12 col-lg-5 m-1">
-						<div class="card-body">
-							<h5 th:text="${categoria.nombre}" class="card-title">Card title</h5>
-							<p th:text="${categoria.descripcion}" class="card-text">Some quick example text to build on
-								the card title and make up the bulk of the card's
-								content.</p>
-							<div class="d-flex justify-content-center" th:if="(!${#strings.equalsIgnoreCase(categoria.nombre, 'Sala del trono')} and 
-							${#strings.equalsIgnoreCase(rango, 'vasallo')}) or ${#strings.equalsIgnoreCase(rango, 'principe')} or
-							${#strings.equalsIgnoreCase(rango, 'rey')}">
-								<a th:href="@{categoria/{id}(id = ${categoria.id})}" class="btn btn-secondary"
-									sec:authorize="isAuthenticated()">Ir al Tema</a>
-							</div>
-
-							<div class="d-flex justify-content-center" sec:authorize="hasRole('ADMIN')">
-								<a th:href="@{categoria/{id}(id = ${categoria.id})}" class="btn btn-secondary"
-									sec:authorize="isAuthenticated()">Ir al Tema</a>
-								<form method="POST" sec:authorize="hasRole('ADMIN')"
-									th:action="@{/editar-categoria-formulario}" class="d-flex m-1">
-									<input type="hidden" th:value="${categoria.id}" name="idCategoria" />
-									<button class="btn btn-outline-primary" type="submit">
-										Editar Categoría
-									</button>
-								</form>
-								<form method="POST" sec:authorize="hasRole('ADMIN')" th:action="@{/eliminar-categoria}"
-									class="d-flex m-1">
-									<input type="hidden" th:value="${categoria.id}" name="idCategoria" />
-									<button class="btn btn-outline-danger" type="submit"
-										th:if="${#lists.isEmpty(categoria.hilos)}">
-										Borrar Categoría
-									</button>
-									<button class="btn btn-outline-danger" type="button"
-										th:if="${not #lists.isEmpty(categoria.hilos)}">
-										¡Hay hilos en la categoría!
-									</button>
-								</form>
-							</div>
-
-
-
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="img/slideruno.jpg" alt="Foto Slider Uno WoW" class="d-block" style="width:100%">
+						</div>
+						<div class="carousel-item">
+							<img src="img/sliderdos.png" alt="Foto Slider Dos WoW" class="d-block" style="width:100%">
+						</div>
+						<div class="carousel-item">
+							<img src="img/slidertres.jpg" alt="Foto Slider Tres WoW" class="d-block" style="width:100%">
 						</div>
 					</div>
 
-					<div class="col-12 d-flex justify-content-center">
-						<form method="POST" sec:authorize="hasRole('ADMIN')" th:action="@{/formulario-categoria}"
-							class="d-flex m-1">
+					<!-- Left and right controls/icons -->
+					<button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon"></span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+						<span class="carousel-control-next-icon"></span>
+					</button>
+				</div>
 
-							<button class="btn btn-outline-warning" type="submit">
-								Crear Nueva Categoría
-							</button>
-						</form>
+
+				<p class="text-center p-3 display-4">
+					Todas las categorías
+				</p>
+
+				<div class="cards-container">
+					<div class="row justify-content-center mx-auto w-75">
+
+						<!--AQUÍ VAN LAS CATEGORÍAS-->
+
+						<div th:each="categoria : ${listaCategorias}" class="card shadow-sm col-12 col-lg-5 m-1">
+							<div class="card-body">
+								<h5 th:text="${categoria.nombre}" class="card-title">Card title</h5>
+								<p th:text="${categoria.descripcion}" class="card-text">Some quick example text to build
+									on
+									the card title and make up the bulk of the card's
+									content.</p>
+								<div class="d-flex justify-content-center" th:if="(!${#strings.equalsIgnoreCase(categoria.nombre, 'Sala del trono')} and 
+							${#strings.equalsIgnoreCase(rango, 'vasallo')}) or ${#strings.equalsIgnoreCase(rango, 'principe')} or
+							${#strings.equalsIgnoreCase(rango, 'rey')}">
+									<a th:href="@{categoria/{id}(id = ${categoria.id})}" class="btn btn-secondary"
+										sec:authorize="isAuthenticated()">Ir al Tema</a>
+								</div>
+
+								<div class="d-flex justify-content-center" sec:authorize="hasRole('ADMIN')">
+									<a th:href="@{categoria/{id}(id = ${categoria.id})}" class="btn btn-secondary"
+										sec:authorize="isAuthenticated()">Ir al Tema</a>
+									<form method="POST" sec:authorize="hasRole('ADMIN')"
+										th:action="@{/editar-categoria-formulario}" class="d-flex m-1">
+										<input type="hidden" th:value="${categoria.id}" name="idCategoria" />
+										<button class="btn btn-outline-primary" type="submit">
+											Editar Categoría
+										</button>
+									</form>
+									<form method="POST" sec:authorize="hasRole('ADMIN')"
+										th:action="@{/eliminar-categoria}" class="d-flex m-1">
+										<input type="hidden" th:value="${categoria.id}" name="idCategoria" />
+										<button class="btn btn-outline-danger" type="submit"
+											th:if="${#lists.isEmpty(categoria.hilos)}">
+											Borrar Categoría
+										</button>
+										<button class="btn btn-outline-danger" type="button"
+											th:if="${not #lists.isEmpty(categoria.hilos)}">
+											¡Hay hilos en la categoría!
+										</button>
+									</form>
+								</div>
 
 
+
+							</div>
+						</div>
+
+						<div class="col-12 d-flex justify-content-center">
+							<form method="POST" sec:authorize="hasRole('ADMIN')" th:action="@{/formulario-categoria}"
+								class="d-flex m-1">
+
+								<button class="btn btn-outline-warning" type="submit">
+									Crear Nueva Categoría
+								</button>
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
 
-		</div>
-	</section>
+			</div>
+		</section>
 	</main>
 	<!--FOOTER-->
 	<footer th:replace="~{fragmentos/footer::footer}">

@@ -36,11 +36,12 @@
 			</div>
 
 
-			<form sec:authorize="isAuthenticated()" class="d-md-block d-lg-inline-flex col-sm-12 col-lg-6 col-xl-3 px-lg-0 py-lg-1 ">
-        <input class="form-control" type="search" placeholder="Hilos, Usuarios..." aria-label="Search">
-        <div class="searchResults">
-        </div>
-      </form>
+			<form sec:authorize="isAuthenticated()"
+				class="d-md-block d-lg-inline-flex col-sm-12 col-lg-6 col-xl-3 px-lg-0 py-lg-1 ">
+				<input class="form-control" type="search" placeholder="Hilos, Usuarios..." aria-label="Search">
+				<div class="searchResults">
+				</div>
+			</form>
 		</div>
 		<a th:href="@{/login}" sec:authorize="!isAuthenticated()">
 			<button type="button" class="btn btn-primary">Iniciar Sesión</button>
@@ -49,9 +50,9 @@
 			<button type="button" class="btn btn-danger">Cerrar Sesión</button>
 		</a>
 	</div>
-	
+
 	<script th:src="@{/js/navbar.js}">
-	
+
 	</script>
 </nav>
 
